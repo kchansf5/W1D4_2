@@ -3,10 +3,13 @@ class Board
 
   def initialize(grid = self.create_grid)
     @grid = grid
+    populate_bombs
   end
 
   def self.create_grid
-    Array.new(9){Array.new(9)}
+    Array.new(9) do
+      Array.new { Tile.new }
+    end
   end
 
   def [](pos)
@@ -26,7 +29,17 @@ class Board
     end
   end
 
+  def populate_bombs
+    bombed_pos = []
+    until bombed_pos.length == 20
+      pos = [rand(9), rand(9)]
+      unless bombed_pos.include?(pos)
+        self[pos].bomb = true
+        bombed_pos << pos
+      end
+    end
 
+  end
 
 
 end
