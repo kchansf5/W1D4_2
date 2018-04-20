@@ -23,9 +23,11 @@ class Board
   end
 
   def render
-    puts "(0..8).to_a.join(" ")"
+    grid = Array.new(9) {Array.new(9)}
+    puts "   #{(0..9).to_a.join("   ")}"
+    puts "----------------------" * 2
     grid.each_with_index do |row, i|
-      puts "#{i} #{row.join(" ")}"
+      puts "#{i}  #{row.join("  |  ")}"
     end
   end
 
